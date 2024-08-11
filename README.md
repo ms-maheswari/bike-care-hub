@@ -42,7 +42,7 @@ npm install
 ```bash
 cd ../server
 npm install
-
+```
 ### Configuration
 1. Create a .env file in the server directory with the following environment variables:
 
@@ -50,7 +50,7 @@ npm install
 MONGODB_URI=mongodb://localhost:27017/bikecarehub
 EMAIL_USER=your_email_user
 EMAIL_PASS=your_email_password
-
+```
 2. Replace your_email_user, and your_email_password with your actual values.
 
 ### Running the Application
@@ -59,12 +59,12 @@ Start the Backend Server
 ```bash
 cd server
 npm start
-
+```
 Start the Frontend Client
 ```bash
 cd ../client
 npm start
-
+```
 The application should now be running on http://localhost:3000 for the frontend and http://localhost:5000 for the backend.
 
 ### Database Schema
@@ -78,7 +78,7 @@ The application should now be running on http://localhost:3000 for the frontend 
   "password": "string",
   "role": "string" // either "customer" or "admin"
 }
-
+```
 ### Services Collection
 ```json
 {
@@ -87,7 +87,7 @@ The application should now be running on http://localhost:3000 for the frontend 
   "description": "string",
   "price": "number"
 }
-
+```
 ### Bookings Collection
 ```json
 {
@@ -97,3 +97,4 @@ The application should now be running on http://localhost:3000 for the frontend 
   "date": "date",
   "status": "string" // e.g., "pending", "completed"
 }
+```
