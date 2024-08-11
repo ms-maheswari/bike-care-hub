@@ -31,6 +31,7 @@
 ```bash
 git clone https://github.com/ms-maheswari/bike-care-hub.git
 cd bike-care-hub
+```
 
 ### Client
 ```bash
