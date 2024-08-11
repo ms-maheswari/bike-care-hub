@@ -8,7 +8,6 @@ function History() {
   useEffect(() => {
     // Retrieve the user's email from sessionStorage
     const email = sessionStorage.getItem("Email");
-
     try {
       // Make a POST request to the server to fetch the user's history
       fetch("http://localhost:5000/history", {
@@ -27,12 +26,10 @@ function History() {
       console.log(error);
     }
   }, []); // The empty dependency array ensures this effect runs only once when the component mounts
-
   return (
     <div className="p-8 pt-36 h-screen">
       {/* Page title */}
-      <h1 className="text-3xl font-bold mb-6 text-center">History</h1>
-      
+      <h1 className="text-3xl font-bold mb-6 text-center">History</h1>      
       {/* Container for the history data table */}
       <div className="box shadow-lg rounded-lg">
         <div className="overflow-x-auto">
@@ -45,8 +42,7 @@ function History() {
                 <th className="px-6 py-3 font-semibold">Name</th>
                 <th className="px-6 py-3 font-semibold">Bike Number</th>
                 <th className="px-6 py-3 font-semibold">Service</th>
-                <th className="px-6 py-3 font-semibold">Status</th>
-                <th className="px-6 py-3 font-semibold">Action</th>
+                <th className="px-6 py-3 font-semibold">Status</th>                
               </tr>
             </thead>
             <tbody className="text-lg">
@@ -58,16 +54,7 @@ function History() {
                   <td className="px-6 py-4">{row.name}</td>
                   <td className="px-6 py-4">{row.vno}</td>
                   <td className="px-6 py-4">{row.service.join(', ')}</td> {/* Join services as a comma-separated string */}
-                  <td className="px-6 py-4">{row.status}</td>
-                  <td className="px-6 py-4">
-                    {/* Button to perform an action, such as viewing detailed information (action implementation not provided) */}
-                    <button
-                      className="bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 rounded"
-                      onClick={() => { /* Add any action if needed */ }}
-                    >
-                      View
-                    </button>
-                  </td>
+                  <td className="px-6 py-4">{row.status}</td>                  
                 </tr>
               ))}
             </tbody>
@@ -77,5 +64,4 @@ function History() {
     </div>
   );
 }
-
 export default History;

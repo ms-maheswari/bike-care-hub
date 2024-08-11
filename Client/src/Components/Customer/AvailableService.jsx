@@ -52,7 +52,7 @@ function AvailableServices() {
             <h1 className="text-4xl font-bold mb-10 text-center text-gray-800">Available Services</h1>
             
             {/* Services Grid - displaying a grid of service cards */}
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 justify-items-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 justify-items-center">
                 {services.map((service) => (
                     <div
                         key={service._id} // Unique key for each service item

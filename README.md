@@ -98,3 +98,8 @@ The application should now be running on http://localhost:3000 for the frontend 
   "status": "string" // e.g., "pending", "completed"
 }
 ```
+
+
+## Screenshots
+
+![Registration Form](Client\src\Assets\1.png)
