@@ -3,10 +3,18 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { CgMenuGridR, CgClose } from 'react-icons/cg';
 import Swal from 'sweetalert2';
 
+// Navbar component responsible for rendering the navigation bar
 const Navbar = () => {
+  // useNavigate hook for programmatic navigation
   const navigate = useNavigate();
+
+  // State for controlling the menu's visibility on mobile
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // State for controlling the avatar dropdown menu's visibility
   const [avatarMenuOpen, setAvatarMenuOpen] = useState(false);
+
+  // Retrieve the user's role and username from sessionStorage
   const role = sessionStorage.getItem("role");
   const username = sessionStorage.getItem("username");
 
@@ -14,7 +22,9 @@ const Navbar = () => {
   console.log("Username:", username);
   console.log("Role:", role);
 
+  // Function to handle user logout
   const logout = () => {
+    // Display a confirmation alert before logging out
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -25,6 +35,7 @@ const Navbar = () => {
       confirmButtonText: 'Yes, log out!'
     }).then((result) => {
       if (result.isConfirmed) {
+        // Clear session storage and navigate to the homepage
         sessionStorage.clear();
         navigate('/');
         Swal.fire(
@@ -36,35 +47,42 @@ const Navbar = () => {
     });
   };
 
+  // Function to navigate the user to the appropriate home page based on their role
   const Home = () => {
     if (role == null) {
-      navigate(`/`);
+      navigate(`/`); // Navigate to the default homepage if no role is defined
     } else if (role === "user") {
-      navigate(`/customerhome`);
+      navigate(`/customerhome`); // Navigate to the customer home page
     } else {
-      navigate(`/adminhome`);
+      navigate(`/adminhome`); // Navigate to the admin home page
     }
   };
 
+  // Function to get the avatar text, which is the first letter of the username
   const getAvatar = (name) => {
     if (name) {
       return name.charAt(0).toUpperCase(); // Return the first letter of the username
     }
-    return "";
+    return ""; // Return an empty string if the name is not available
   };
 
   return (
     <nav className="shadow-md w-full fixed top-0 left-0 bg-black text-white italic">
       <div className="flex items-center justify-between py-4 px-7 md:px-10 lg:px-24">
+        {/* Logo / Home link */}
         <h3 onClick={Home} className="text-2xl font-bold cursor-pointer flex items-center">
-          Ride
+          BikeCare Hub
         </h3>
+        
+        {/* Hamburger menu for mobile view */}
         <div 
           className="md:hidden text-3xl cursor-pointer" 
           onClick={() => setMenuOpen(!menuOpen)}
         >
           {menuOpen ? <CgClose /> : <CgMenuGridR />}
         </div>
+
+        {/* Navigation links */}
         <ul className={`md:flex md:items-center md:space-x-8 space-y-4 md:space-y-0 absolute md:static left-0 w-full md:w-auto md:pl-0 pl-7 md:top-0 top-16 transition-all duration-500 ${menuOpen ? 'top-16' : 'top-[-200px]'}`}>
           {/* Always include the Home and About links */}
           <li>
@@ -83,9 +101,12 @@ const Navbar = () => {
               About
             </NavLink>
           </li>
+          
+          {/* Conditional rendering of links based on user's role */}
           {
             role == null ? (
               <>
+                {/* If no role is defined, show Login and Signup links */}
                 <li>
                   <NavLink 
                     to="/login" 
@@ -105,8 +126,10 @@ const Navbar = () => {
               </>
             ) : (
               <>
+                {/* If the user is logged in */}
                 {role === "user" ? (
                   <>
+                    {/* User-specific links */}
                     <li>
                       <NavLink 
                         to="/customerbooking" 
@@ -131,6 +154,7 @@ const Navbar = () => {
                         Status
                       </NavLink>
                     </li>
+                    {/* Avatar dropdown menu for logged-in users */}
                     <div className="hidden md:flex items-center relative">
                       <div 
                         className="w-10 h-10 bg-red-600 text-white flex items-center justify-center rounded-full mr-4 text-lg cursor-pointer"
@@ -152,6 +176,7 @@ const Navbar = () => {
                   </>
                 ) : (
                   <>
+                    {/* Admin-specific links */}
                     <li>
                       <NavLink 
                         to="/adminservice" 
@@ -165,9 +190,10 @@ const Navbar = () => {
                         to="/admincustbooking" 
                         className={({ isActive }) => `block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
                       >
-                        CustBooking
+                        Booking
                       </NavLink>
                     </li>
+                    {/* Avatar dropdown menu for admins */}
                     <div className="hidden md:flex items-center relative">
                       <div 
                         className="w-10 h-10 bg-red-600 text-white flex items-center justify-center rounded-full mr-4 text-lg cursor-pointer"
