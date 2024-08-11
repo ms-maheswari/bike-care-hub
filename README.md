@@ -28,24 +28,24 @@
 - MongoDB server running
 
 ### Clone the Repository
-`bash`
+```bash
 git clone https://github.com/ms-maheswari/bike-care-hub.git
 cd bike-care-hub
 
 ### Client
-`bash`
+```bash
 cd client
 npm install
 
 ### Server
-`bash`
+```bash
 cd ../server
 npm install
 
 ### Configuration
 1. Create a .env file in the server directory with the following environment variables:
 
-`env`
+```env
 MONGODB_URI=mongodb://localhost:27017/bikecarehub
 EMAIL_USER=your_email_user
 EMAIL_PASS=your_email_password
@@ -55,12 +55,12 @@ EMAIL_PASS=your_email_password
 ### Running the Application
 
 Start the Backend Server
-`bash`
+```bash
 cd server
 npm start
 
 Start the Frontend Client
-`bash`
+```bash
 cd ../client
 npm start
 
@@ -69,7 +69,7 @@ The application should now be running on http://localhost:3000 for the frontend 
 ### Database Schema
 
 ### Users Collection
-`json`
+```json
 {
   "user_id": "ObjectId",
   "username": "string",
@@ -79,7 +79,7 @@ The application should now be running on http://localhost:3000 for the frontend 
 }
 
 ### Services Collection
-`json`
+```json
 {
   "service_id": "ObjectId",
   "name": "string",
@@ -88,7 +88,7 @@ The application should now be running on http://localhost:3000 for the frontend 
 }
 
 ### Bookings Collection
-`json`
+```json
 {
   "booking_id": "ObjectId",
   "user_id": "ObjectId",
