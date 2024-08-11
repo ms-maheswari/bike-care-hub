@@ -150,11 +150,11 @@ Admin dashboard showing list of customer bookings where they can sort bookings b
 
 Once the admin click on the view button in booking section it navigates to this page where they can click on update button to update the booking status. 
 
-(![updateservice](Client/src/Assets/Screenshot/update.png))
+![updateservice](Client/src/Assets/Screenshot/update.png)
 
 After that an email will be sent to the respective customer
 
-(![customermail](Client/src/Assets/Screenshot/customermail.png))
+![customermail](Client/src/Assets/Screenshot/customermail.png)
 
 
 
