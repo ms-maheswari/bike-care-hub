@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Book from '../../Assets/5.png'; // Image for visual appeal
 import Swal from 'sweetalert2'; // For displaying alerts
-
+import swal from 'sweetalert';
 function UpdateBooking() {
     const navigate = useNavigate(); // Hook for programmatic navigation
     const [data, setData] = useState([]); // State to hold booking details
@@ -51,7 +51,7 @@ function UpdateBooking() {
                     .then((res) => res.json()) // Parse JSON response
                     .then((data) => {
                         if (data.status === "ok") {
-                            Swal.fire("Updated Successfully"); // Show success alert
+                            swal(' Successful!', 'You have Updated successfully.', 'success') // Show success alert
                         }
                     });
             } catch (error) {
