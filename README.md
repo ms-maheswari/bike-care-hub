@@ -37,7 +37,7 @@ cd bike-care-hub
 ```bash
 cd client
 npm install
-
+```
 ### Server
 ```bash
 cd ../server
