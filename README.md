@@ -102,4 +102,4 @@ The application should now be running on http://localhost:3000 for the frontend 
 
 ## Screenshots
 
-![Registration Form](Client\src\Assets\1.png)
+![Home Page](Client/src/Assets/Screenshot/1.png)
