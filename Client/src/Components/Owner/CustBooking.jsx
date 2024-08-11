@@ -55,7 +55,7 @@ function CustBooking() {
       </div>
 
       {/* Table to display bookings */}
-      <div className='mt-4 mt-4 w-full overflow-x-auto overflow-y-auto max-h-[400px]'>
+      <div className='mt-4 w-full overflow-x-auto overflow-y-auto max-h-[400px]'>
         <div className="shadow-lg rounded-lg">
           <table className="min-w-full bg-white">
             <thead className="bg-gray-200 text-xl">

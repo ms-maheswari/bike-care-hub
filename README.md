@@ -102,4 +102,60 @@ The application should now be running on http://localhost:3000 for the frontend 
 
 ## Screenshots
 
+This is the Home page that contains navbar, landing page, available services, and footer
 ![Home Page](Client/src/Assets/Screenshot/1.png)
+
+![Available Services](Client/src/Assets/Screenshot/2.png)
+
+This is the Login page
+
+![Login Page](Client/src/Assets/Screenshot/login.png)
+
+This is the Signup page
+
+![Login Page](Client/src/Assets/Screenshot/signup.png)
+
+### Customer Activities
+
+This is the page where customer can make their booking after successful login
+
+![bookservice](Client/src/Assets/Screenshot/bookservice.png)
+
+Once the customer finish their booking they can check their booking status
+
+![statuschecking](Client/src/Assets/Screenshot/statuschecking.png)
+
+Once the service is completed then it will be displayed in history page
+
+![history](Client/src/Assets/Screenshot/history.png)
+
+
+### Admin Activities
+
+After a customer booked a service admin will receive a email regarding booking details
+
+![email](Client/src/Assets/Screenshot/notification.png)
+
+Admin can perform CRUD operation in Services
+
+![addservice](Client/src/Assets/Screenshot/addservice.png)
+
+Admin dashboard showing list of services
+
+![listofservices](Client/src/Assets/Screenshot/listservices.png)
+
+Admin dashboard showing list of customer bookings where they can sort bookings based on pending, ready and completed
+
+![adminStatus](Client/src/Assets/Screenshot/adminstatus.png)
+
+Once the admin click on the view button in booking section it navigates to this page where they can click on update button to update the booking status. 
+
+(![updateservice](Client/src/Assets/Screenshot/update.png))
+
+After that an email will be sent to the respective customer
+
+(![customermail](Client/src/Assets/Screenshot/customermail.png))
+
+
+
+

@@ -169,17 +169,6 @@ app.post("/updatebooking", async (req, res) => {
     }
 });
 
-// Update number of bookings per day
-app.post("/updatenoofbook", async (req, res) => {
-    var { noofbook } = req.body;
-    try {
-        // Update the number of bookings
-        const data = await Admin.updateOne({}, { $set: { noofbook: noofbook } });
-        res.send({ status: "ok" });
-    } catch (error) {
-        console.log(error); // Error handling
-    }
-});
 
 // USER SIDE Connectivity
 

@@ -133,10 +133,6 @@ function UpdateBooking() {
                     </div>
                 </form>
                 
-                {/* Image for visual appeal, hidden on small screens */}
-                <div className='hidden md:block md:w-1/3 lg:w-1/2 p-6'>
-                    <img src={Book} alt="book" className='w-full h-auto object-cover' />
-                </div>
             </div>
         </>
     );
