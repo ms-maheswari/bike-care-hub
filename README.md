@@ -75,8 +75,8 @@ The application should now be running on http://localhost:3000 for the frontend 
   "_id": "ObjectId",
   "email": "String",
   "phone": "String",
-  "pass": "String", // hashed password
-  "role": "String" // e.g., "user"
+  "pass": "String", 
+  "role": "String" 
 }
 ```
 
@@ -86,8 +86,8 @@ The application should now be running on http://localhost:3000 for the frontend 
   "_id": "ObjectId",
   "email": "String",
   "phone": "String",
-  "pass": "String", // hashed password
-  "role": "String" // e.g., "admin"
+  "pass": "String", 
+  "role": "String" 
 }
 ```
 
@@ -95,25 +95,25 @@ The application should now be running on http://localhost:3000 for the frontend 
 ```json
 {
   "_id": "ObjectId",
-  "sname": "String", // service name
-  "sdesc": "String", // service description
-  "samount": "String" // service amount
+  "sname": "String", 
+  "sdesc": "String", 
+  "samount": "String" 
 }
 ```
 ### AddBooking Collection
 ```json
 {
   "_id": "ObjectId",
-  "date": "String", // booking date in YYYY-MM-DD format
-  "name": "String", // customer name
-  "email": "String", // customer email
-  "phone": "String", // customer phone
-  "vname": "String", // vehicle name
-  "vno": "String", // vehicle number
-  "vmodel": "String", // vehicle model year
-  "address": "String", // service address
-  "status": "String", // booking status (e.g., "Completed")
-  "service": ["String"] // array of service IDs or names
+  "date": "String",
+  "name": "String", 
+  "email": "String", 
+  "phone": "String", 
+  "vname": "String", 
+  "vno": "String", 
+  "vmodel": "String", 
+  "address": "String", 
+  "status": "String", 
+  "service": ["String"] 
 }
 ```
 
