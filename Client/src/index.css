@@ -2,18 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@keyframes scroll {
-    0% {
-      transform: translateX(0);
-    }
-    100% {
-      transform: translateX(-100%);
-    }
-  }
-  
-  .animate-scroll {
-    display: flex;
-    width: 200%; /* Adjust as needed to ensure seamless scrolling */
-    animation: scroll 30s linear infinite;
-  }
-  
+/* Tailwind CSS classes for Navbar */
+.navbar {
+  @apply fixed top-0 left-0 w-full bg-white shadow-md z-50;
+}

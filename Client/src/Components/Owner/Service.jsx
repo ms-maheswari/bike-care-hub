@@ -96,7 +96,7 @@ function Service() {
                                     <td className="py-2 px-4 text-center text-sm md:text-base">
                                         <button
                                             onClick={() => updateservice(row._id)}
-                                            className="px-4 py-2 bg-blue-600 text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                            className="px-4 py-2 bg-[#0000FF] text-white rounded hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
                                         >
                                             Edit
                                         </button>

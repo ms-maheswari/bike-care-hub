@@ -3,28 +3,18 @@ import { NavLink, useNavigate } from 'react-router-dom';
 import { CgMenuGridR, CgClose } from 'react-icons/cg';
 import Swal from 'sweetalert2';
 
-// Navbar component responsible for rendering the navigation bar
+// The Navbar component defines the navigation bar at the top of the application.
+// It includes navigation links, a responsive menu toggle, and an avatar dropdown for logged-in users.
 const Navbar = () => {
-  // useNavigate hook for programmatic navigation
   const navigate = useNavigate();
+  const [menuOpen, setMenuOpen] = useState(false); // State to manage the opening and closing of the mobile menu
+  const [avatarMenuOpen, setAvatarMenuOpen] = useState(false); // State to manage the opening and closing of the avatar dropdown menu
 
-  // State for controlling the menu's visibility on mobile
-  const [menuOpen, setMenuOpen] = useState(false);
+  const role = sessionStorage.getItem("role"); // Retrieves the user's role from sessionStorage
+  const username = sessionStorage.getItem("username"); // Retrieves the user's username from sessionStorage
 
-  // State for controlling the avatar dropdown menu's visibility
-  const [avatarMenuOpen, setAvatarMenuOpen] = useState(false);
-
-  // Retrieve the user's role and username from sessionStorage
-  const role = sessionStorage.getItem("role");
-  const username = sessionStorage.getItem("username");
-
-  // Debugging: log the username and role
-  console.log("Username:", username);
-  console.log("Role:", role);
-
-  // Function to handle user logout
+  // Handles user logout, clears session storage, and navigates back to the home page.
   const logout = () => {
-    // Display a confirmation alert before logging out
     Swal.fire({
       title: 'Are you sure?',
       text: "You won't be able to revert this!",
@@ -35,7 +25,6 @@ const Navbar = () => {
       confirmButtonText: 'Yes, log out!'
     }).then((result) => {
       if (result.isConfirmed) {
-        // Clear session storage and navigate to the homepage
         sessionStorage.clear();
         navigate('/');
         Swal.fire(
@@ -47,34 +36,31 @@ const Navbar = () => {
     });
   };
 
-  // Function to navigate the user to the appropriate home page based on their role
+  // Handles navigation based on the user's role: redirects to either the customer home or admin home.
   const Home = () => {
     if (role == null) {
-      navigate(`/`); // Navigate to the default homepage if no role is defined
+      navigate(`/`);
     } else if (role === "user") {
-      navigate(`/customerhome`); // Navigate to the customer home page
+      navigate(`/customerhome`);
     } else {
-      navigate(`/adminhome`); // Navigate to the admin home page
+      navigate(`/adminhome`);
     }
   };
 
-  // Function to get the avatar text, which is the first letter of the username
+  // Returns the first letter of the username in uppercase as the avatar.
   const getAvatar = (name) => {
-    if (name) {
-      return name.charAt(0).toUpperCase(); // Return the first letter of the username
-    }
-    return ""; // Return an empty string if the name is not available
+    return name ? name.charAt(0).toUpperCase() : "";
   };
 
   return (
-    <nav className="shadow-md w-full fixed top-0 left-0 bg-black text-white italic">
+    <nav className="fixed top-0 left-0 w-full bg-white text-black shadow-md z-50 italic">
       <div className="flex items-center justify-between py-4 px-7 md:px-10 lg:px-24">
-        {/* Logo / Home link */}
+        {/* Logo and Home navigation */}
         <h3 onClick={Home} className="text-2xl font-bold cursor-pointer flex items-center">
           BikeCare Hub
         </h3>
         
-        {/* Hamburger menu for mobile view */}
+        {/* Mobile menu toggle button */}
         <div 
           className="md:hidden text-3xl cursor-pointer" 
           onClick={() => setMenuOpen(!menuOpen)}
@@ -83,140 +69,117 @@ const Navbar = () => {
         </div>
 
         {/* Navigation links */}
-        <ul className={`md:flex md:items-center md:space-x-8 space-y-4 md:space-y-0 absolute md:static left-0 w-full md:w-auto md:pl-0 pl-7 md:top-0 top-16 transition-all duration-500 ${menuOpen ? 'top-16' : 'top-[-200px]'}`}>
-          {/* Always include the Home and About links */}
+        <ul className={`md:flex md:items-center md:space-x-8 space-y-4 md:space-y-0 absolute md:static left-0 w-full md:w-auto md:pl-0 pl-7 md:top-0 top-16 transition-all duration-500 ${menuOpen ? 'top-16 bg-white' : 'top-[-200px]'} md:bg-transparent`}>
           <li>
+            {/* Home link */}
             <NavLink 
               to="/" 
-              className={({ isActive }) => `block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
+              className={({ isActive }) => `inline-block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
             >
               Home
             </NavLink>
           </li>
           <li>
+            {/* About link */}
             <NavLink 
               to="/about" 
-              className={({ isActive }) => `block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
+              className={({ isActive }) => `inline-block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
             >
               About
             </NavLink>
           </li>
-          
-          {/* Conditional rendering of links based on user's role */}
-          {
-            role == null ? (
-              <>
-                {/* If no role is defined, show Login and Signup links */}
-                <li>
-                  <NavLink 
-                    to="/login" 
-                    className={({ isActive }) => `block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
-                  >
-                    Login
-                  </NavLink>
-                </li>
-                <li>
-                  <NavLink 
-                    to="/signup" 
-                    className={({ isActive }) => `block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
-                  >
-                    Signup
-                  </NavLink>
-                </li>
-              </>
-            ) : (
-              <>
-                {/* If the user is logged in */}
-                {role === "user" ? (
-                  <>
-                    {/* User-specific links */}
-                    <li>
-                      <NavLink 
-                        to="/customerbooking" 
-                        className={({ isActive }) => `block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
-                      >
-                        Book
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink 
-                        to="/customerhistory" 
-                        className={({ isActive }) => `block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
-                      >
-                        History
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink 
-                        to="/customerbooked" 
-                        className={({ isActive }) => `block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
-                      >
-                        Status
-                      </NavLink>
-                    </li>
-                    {/* Avatar dropdown menu for logged-in users */}
-                    <div className="hidden md:flex items-center relative">
-                      <div 
-                        className="w-10 h-10 bg-red-600 text-white flex items-center justify-center rounded-full mr-4 text-lg cursor-pointer"
-                        onClick={() => setAvatarMenuOpen(!avatarMenuOpen)}
-                      >
-                        {getAvatar(username)}
-                      </div>
-                      {avatarMenuOpen && (
-                        <div className="absolute right-0 mt-24 w-32 bg-gray-800 text-white rounded-lg shadow-lg">
-                          <button 
-                            onClick={logout}
-                            className=" block w-full text-left px-4 py-2 hover:bg-red-700"
-                          >
-                            Logout
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </>
-                ) : (
-                  <>
-                    {/* Admin-specific links */}
-                    <li>
-                      <NavLink 
-                        to="/adminservice" 
-                        className={({ isActive }) => `block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
-                      >
-                        Service
-                      </NavLink>
-                    </li>
-                    <li>
-                      <NavLink 
-                        to="/admincustbooking" 
-                        className={({ isActive }) => `block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
-                      >
-                        Booking
-                      </NavLink>
-                    </li>
-                    {/* Avatar dropdown menu for admins */}
-                    <div className="hidden md:flex items-center relative">
-                      <div 
-                        className="w-10 h-10 bg-red-600 text-white flex items-center justify-center rounded-full mr-4 text-lg cursor-pointer"
-                        onClick={() => setAvatarMenuOpen(!avatarMenuOpen)}
-                      >
-                        {getAvatar(username)}
-                      </div>
-                      {avatarMenuOpen && (
-                        <div className="absolute right-0 mt-2 w-32 bg-red-600 text-white rounded-lg shadow-lg">
-                          <button 
-                            onClick={logout}
-                            className="block w-full text-left px-4 py-2 hover:bg-red-700"
-                          >
-                            Logout
-                          </button>
-                        </div>
-                      )}
-                    </div>
-                  </>
+          {role == null ? (
+            <>
+              {/* Login and Signup links displayed if the user is not logged in */}
+              <li>
+                <NavLink 
+                  to="/login" 
+                  className={({ isActive }) => `inline-block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
+                >
+                  Login
+                </NavLink>
+              </li>
+              <li>
+                <NavLink 
+                  to="/signup" 
+                  className={({ isActive }) => `inline-block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
+                >
+                  Signup
+                </NavLink>
+              </li>
+            </>
+          ) : (
+            <>
+              {role === "user" ? (
+                <>
+                  {/* Links specific to a logged-in user */}
+                  <li>
+                    <NavLink 
+                      to="/customerbooking" 
+                      className={({ isActive }) => `inline-block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
+                    >
+                      Book
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink 
+                      to="/customerhistory" 
+                      className={({ isActive }) => `inline-block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
+                    >
+                      History
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink 
+                      to="/customerbooked" 
+                      className={({ isActive }) => `inline-block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
+                    >
+                      Status
+                    </NavLink>
+                  </li>
+                </>
+              ) : (
+                <>
+                  {/* Links specific to an admin user */}
+                  <li>
+                    <NavLink 
+                      to="/adminservice" 
+                      className={({ isActive }) => `inline-block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
+                    >
+                      Service
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink 
+                      to="/admincustbooking" 
+                      className={({ isActive }) => `inline-block text-lg hover:text-red-500 ${isActive ? 'border-b-2 border-red-500' : ''}`}
+                    >
+                      Booking
+                    </NavLink>
+                  </li>
+                </>
+              )}
+              {/* Avatar and dropdown menu for logged-in users */}
+              <div className="hidden md:flex items-center relative">
+                <div 
+                  className="w-10 h-10 bg-red-600 text-white flex items-center justify-center rounded-full mr-4 text-lg cursor-pointer"
+                  onClick={() => setAvatarMenuOpen(!avatarMenuOpen)}
+                >
+                  {getAvatar(username)}
+                </div>
+                {avatarMenuOpen && (
+                  <div className="absolute right-0 mt-2 w-32 bg-red-600 text-white rounded-lg shadow-lg">
+                    <button 
+                      onClick={logout}
+                      className="block w-full text-left px-4 py-2 hover:bg-red-700"
+                    >
+                      Logout
+                    </button>
+                  </div>
                 )}
-              </>
-            )
-          }
+              </div>
+            </>
+          )}
         </ul>
       </div>
     </nav>

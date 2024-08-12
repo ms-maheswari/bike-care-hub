@@ -11,8 +11,7 @@ const Login = () => {
   const [password, setPass] = useState('');
 
   // Store default values in session storage (note: this will reset on every render)
-  sessionStorage.setItem("username", uname);
-  sessionStorage.setItem("role", "user");
+  // 
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -41,6 +40,8 @@ const Login = () => {
 
       if (result.status === "ok") {
         // On successful login, store user data in session storage
+        sessionStorage.setItem("username", uname);
+  sessionStorage.setItem("role", "user");
         sessionStorage.setItem("Email", result.data.email);
         sessionStorage.setItem("Phone", result.data.phone);
         swal('Success!', 'Login Successful', 'success');
