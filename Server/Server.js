@@ -178,7 +178,7 @@ app.post("/login", async (req, res) => {
     try {
         let user = null;
         // Check if the username is an admin or a regular user
-        if (uname === "mahes7439@gmail.com" || uname === "7123789456") {
+        if (uname === "mahes7439@gmail.com") {
             user = await Admin.findOne({}, { pass: 1 });
         } else {
             user = await User.findOne({ $or: [{ email: uname }, { phone: uname }] });
@@ -208,19 +208,36 @@ app.post("/signup", async (req, res) => {
     
     let role = null;
     // Determine role based on email and password
-    if (email === "mahes7439@gmail.com" && pass === "Service@2023") {
+    if (email === "mahes7439@gmail.com" && pass === "@Mahes123") {
         role = "admin";
-    } else {
-        role = "user";
+        pass = await bcrypt.hash(pass, 13);
+        
+        try {
+        // Check if user already exists
+        const check = await User.findOne({ email });
+        if (!check) {
+            // Create a new user if they don't already exist
+            await Admin.create({
+                email,
+                phone,
+                pass,
+                role,
+            });
+            res.send({ status: "ok" });
+        } else {
+            res.send({ status: "error",message:"Admin already exists" }); // User already exists
+        }
+    } catch (error) {
+        console.log("Error during signup:", error); // Error handling
+        res.send({status: "error", message: "An error occurred during signup" });
     }
-
-    // Hash the password before saving
+}else{
+    role = "user";
     pass = await bcrypt.hash(pass, 13);
-
     try {
         // Check if user already exists
-        const check = await User.findOne(({ $or: [{ email }, { phone }] }));
-        if (check === null) {
+        const check = await User.findOne({ email });
+        if (!check) {
             // Create a new user if they don't already exist
             await User.create({
                 email,
@@ -230,12 +247,13 @@ app.post("/signup", async (req, res) => {
             });
             res.send({ status: "ok" });
         } else {
-            res.send({ status: "error" }); // User already exists
+            res.send({ status: "error",message:"User already exists" }); // User already exists
         }
     } catch (error) {
         console.log("Error during signup:", error); // Error handling
-        res.send({ send: "catch error" });
+        res.send({status: "error", message: "An error occurred during signup" });
     }
+}
 });
 
 // Function to send email using Nodemailer

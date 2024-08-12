@@ -11,7 +11,7 @@
 - Booking services
 - Admin panel for managing services and bookings
 - Email notifications for bookings
-- Dashboard for viewing current bookings and stats
+- Dashboard for viewing current bookings and status
 
 ## Technologies Used
 
@@ -69,33 +69,51 @@ The application should now be running on http://localhost:3000 for the frontend 
 
 ### Database Schema
 
-### Users Collection
+### Customer Collection
 ```json
 {
-  "user_id": "ObjectId",
-  "username": "string",
-  "email": "string",
-  "password": "string",
-  "role": "string" // either "customer" or "admin"
+  "_id": "ObjectId",
+  "email": "String",
+  "phone": "String",
+  "pass": "String", // hashed password
+  "role": "String" // e.g., "user"
 }
 ```
-### Services Collection
+
+### Admin Collection
 ```json
 {
-  "service_id": "ObjectId",
-  "name": "string",
-  "description": "string",
-  "price": "number"
+  "_id": "ObjectId",
+  "email": "String",
+  "phone": "String",
+  "pass": "String", // hashed password
+  "role": "String" // e.g., "admin"
 }
 ```
-### Bookings Collection
+
+### AddService Collection
 ```json
 {
-  "booking_id": "ObjectId",
-  "user_id": "ObjectId",
-  "service_id": "ObjectId",
-  "date": "date",
-  "status": "string" // e.g., "pending", "completed"
+  "_id": "ObjectId",
+  "sname": "String", // service name
+  "sdesc": "String", // service description
+  "samount": "String" // service amount
+}
+```
+### AddBooking Collection
+```json
+{
+  "_id": "ObjectId",
+  "date": "String", // booking date in YYYY-MM-DD format
+  "name": "String", // customer name
+  "email": "String", // customer email
+  "phone": "String", // customer phone
+  "vname": "String", // vehicle name
+  "vno": "String", // vehicle number
+  "vmodel": "String", // vehicle model year
+  "address": "String", // service address
+  "status": "String", // booking status (e.g., "Completed")
+  "service": ["String"] // array of service IDs or names
 }
 ```
 
@@ -103,7 +121,10 @@ The application should now be running on http://localhost:3000 for the frontend 
 ## Screenshots
 
 This is the Home page that contains navbar, landing page, available services, and footer
+
 ![Home Page](Client/src/Assets/Screenshot/1.png)
+
+Available Services
 
 ![Available Services](Client/src/Assets/Screenshot/2.png)
 
