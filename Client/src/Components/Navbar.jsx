@@ -53,7 +53,7 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="fixed top-0 left-0 w-full bg-white text-black shadow-md z-50 italic">
+    <nav className="fixed top-0 left-0 w-full bg-black text-white shadow-md z-50 italic">
       <div className="flex items-center justify-between py-4 px-7 md:px-10 lg:px-24">
         {/* Logo and Home navigation */}
         <h3 onClick={Home} className="text-2xl font-bold cursor-pointer flex items-center">
@@ -69,7 +69,7 @@ const Navbar = () => {
         </div>
 
         {/* Navigation links */}
-        <ul className={`md:flex md:items-center md:space-x-8 space-y-4 md:space-y-0 absolute md:static left-0 w-full md:w-auto md:pl-0 pl-7 md:top-0 top-16 transition-all duration-500 ${menuOpen ? 'top-16 bg-white' : 'top-[-200px]'} md:bg-transparent`}>
+        <ul className={`md:text-white md:flex md:items-center md:space-x-8 space-y-4 md:space-y-0 absolute md:static left-0 w-full md:w-auto md:pl-0 pl-7 md:top-0 top-16 transition-all duration-500 ${menuOpen ? 'top-16  text-black bg-gray-200'  : 'top-[-200px]'} md:bg-transparent`}>
           <li>
             {/* Home link */}
             <NavLink 
