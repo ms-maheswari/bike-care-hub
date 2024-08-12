@@ -173,7 +173,7 @@ Once the admin click on the view button in booking section it navigates to this 
 
 ![updateservice](Client/src/Assets/Screenshot/update.png)
 
-After that an email will be sent to the respective customer
+After that an email will be sent to the respective customer about their service booking status
 
 ![customermail](Client/src/Assets/Screenshot/customermail.png)
 
