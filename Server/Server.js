@@ -1,7 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const bcrypt = require('bcrypt');
+// const bcrypt = require('bcrypt');4
+const bcrypt = require('bcryptjs');
 const app = express();
 app.use(express.json()); // Middleware to parse JSON bodies
 app.use(cors()); // Middleware to handle Cross-Origin Resource Sharing
