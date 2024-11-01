@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
-
+import apiUrl from '../../api';
 function AddService() {
   // State variables for storing service details
   const [sname, setSName] = useState(''); // Service name
@@ -30,7 +30,7 @@ function AddService() {
         if (samount && samount > 0 && alphanumeric.test(samount)) {
           try {
             // Send service details to the server
-            fetch("http://localhost:5000/addservice", {
+            fetch(`${apiUrl}/addservice`, {
               method: "POST", // Use POST method to send data
               crossDomain: true, // Allow cross-domain requests
               headers: { "Content-Type": "application/json" }, // Set content type to JSON

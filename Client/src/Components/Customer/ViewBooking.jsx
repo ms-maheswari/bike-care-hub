@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Book from '../../Assets/5.png'; // Importing image asset for visual enhancement
-
+import apiUrl from '../../api';
 function ViewBooking() {
     // Hook for navigation between routes
     const navigate = useNavigate();
@@ -17,7 +17,7 @@ function ViewBooking() {
         const fetchBookingDetails = async () => {
             try {
                 // Fetch booking details from the server using the booking ID
-                const response = await fetch("http://localhost:5000/viewbooking", {
+                const response = await fetch(`${apiUrl}/viewbooking`, {
                     method: "POST", // POST method to send data to the server
                     headers: { "Content-Type": "application/json" }, // Set content type to JSON
                     body: JSON.stringify({ _id }), // Send the booking ID in the request body

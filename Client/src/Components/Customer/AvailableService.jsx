@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import swal from 'sweetalert';
-
+import apiUrl from '../../api'
 function AvailableServices() {
     const [services, setServices] = useState([]);
     const navigate = useNavigate(); 
     const role = sessionStorage.getItem("role");
 
     useEffect(() => {
-        fetch("http://localhost:5000/service", {
+        fetch(`${apiUrl}/service`, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
         })

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import apiUrl from '../../api';
 function History() {
   // State to store the history data fetched from the server
   const [data, setData] = useState([]);
@@ -10,7 +10,7 @@ function History() {
     const email = sessionStorage.getItem("Email");
     try {
       // Make a POST request to the server to fetch the user's history
-      fetch("http://localhost:5000/history", {
+      fetch(`${apiUrl}/history`, {
         method: "POST", // Use POST method to send data to the server
         crossDomain: true, // Allow requests to be made across different domains
         headers: { "Content-Type": "application/json" }, // Specify the request payload format as JSON

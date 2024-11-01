@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
-
+import apiUrl from '../../api';
 function EditService() {
     // State variables for service details
     const [sname, setSName] = useState(); // Service name
@@ -14,7 +14,7 @@ function EditService() {
     // Fetch the service details when the component mounts or _id changes
     useEffect(() => {
         try {
-            fetch("http://localhost:5000/fetchservice", {
+            fetch(`${apiUrl}/fetchservice`, {
                 method: "POST", // POST method to send data
                 crossDomain: true, // Allow cross-domain requests
                 headers: { "Content-Type": "application/json" }, // Content type set to JSON

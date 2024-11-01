@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Swal from 'sweetalert2';
 import { useNavigate, Link } from 'react-router-dom';
-
+import apiUrl from '../../api';
 function Service() {
     const navigate = useNavigate();
     const [data, setData] = useState([]); // State to hold the list of services
@@ -10,7 +10,7 @@ function Service() {
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const res = await fetch("http://localhost:5000/service", {
+                const res = await fetch(`${apiUrl}/service`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                 });

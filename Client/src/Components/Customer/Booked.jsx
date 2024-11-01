@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
+import apiUrl from '../../api'
 
 // Booked Component
 function Booked() {
@@ -16,7 +17,7 @@ function Booked() {
 
     try {
       // Fetch booking data for the logged-in user
-      fetch("http://localhost:5000/fetchbook", {
+      fetch(`${apiUrl}/fetchbook`, {
         method: "POST", // HTTP method for sending data to the server
         crossDomain: true, // Allows requests across different domains
         headers: { "Content-Type": "application/json" }, // Setting the request headers

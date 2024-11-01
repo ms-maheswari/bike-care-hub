@@ -2,7 +2,7 @@ import { useState } from 'react';
 import validator from 'validator';
 import { useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
-
+import apiUrl from '../api';
 const Signup = () => {
   // State to store the email input value
   const [email, setEmail] = useState("");
@@ -58,7 +58,7 @@ const Signup = () => {
     // Try block to catch any errors during the API call
     try {
       // Make a POST request to the signup API endpoint
-      fetch("http://localhost:5000/signup", {
+      fetch(`${apiUrl}/signup`, {
         method: "POST",
         crossDomain: true,
         headers: { "Content-Type": "application/json" },

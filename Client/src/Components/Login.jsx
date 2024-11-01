@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
-
+import apiUrl from '../api';
 const Login = () => {
   // Hook for programmatic navigation
   const navigate = useNavigate();
@@ -26,7 +26,7 @@ const Login = () => {
 
     try {
       // Send POST request to login endpoint
-      const response = await fetch("http://localhost:5000/login", {
+      const response = await fetch(`${apiUrl}/login`, {
         method: "POST",
         crossDomain: true,
         headers: { "Content-Type": "application/json" },

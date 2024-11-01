@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
 import swal from 'sweetalert';
-
+import apiUrl from '../../api';
 // Booking Component
 function Booking() {
     // State variables to store form inputs
@@ -34,7 +34,7 @@ function Booking() {
     useEffect(() => {
         const fetchServices = async () => {
             try {
-                const response = await fetch("http://localhost:5000/service", {
+                const response = await fetch(`${apiUrl}/service`, {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify(), // Empty body since we're only fetching data

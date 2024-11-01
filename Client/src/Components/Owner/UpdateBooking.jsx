@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Book from '../../Assets/5.png'; // Image for visual appeal
 import Swal from 'sweetalert2'; // For displaying alerts
 import swal from 'sweetalert';
+import apiUrl from '../../api';
 function UpdateBooking() {
     const navigate = useNavigate(); // Hook for programmatic navigation
     const [data, setData] = useState([]); // State to hold booking details
@@ -11,7 +12,7 @@ function UpdateBooking() {
     // Fetch booking details when the component mounts or the booking ID changes
     useEffect(() => {
         try {
-            fetch("http://localhost:5000/viewbooking", {
+            fetch(`${apiUrl}/viewbooking`, {
                 method: "POST", // POST method to send request
                 crossDomain: true, // Allow cross-domain requests
                 headers: { "Content-Type": "application/json" }, // Set content type to JSON

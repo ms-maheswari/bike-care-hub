@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from "react-router-dom";
-
+import apiUrl from '../../api';
 function CustBooking() {
   // Hook for programmatic navigation
   const navigate = useNavigate();
@@ -20,7 +20,7 @@ function CustBooking() {
     const fetchData = async () => {
       try {
         // Send a POST request to fetch bookings based on status
-        const response = await fetch("http://localhost:5000/custbooking", {
+        const response = await fetch(`${apiUrl}/custbooking`, {
           method: "POST", // POST method to send data
           crossDomain: true, // Allow cross-domain requests
           headers: { "Content-Type": "application/json" }, // Content type set to JSON
