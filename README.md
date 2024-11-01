@@ -47,7 +47,7 @@ npm install
 1. Create a .env file in the server directory with the following environment variables:
 
 ```env
-MONGODB_URI=mongodb://localhost:27017/bikecarehub
+MONGODB_URI=mongodb://localhost:5000/bikecarehub
 EMAIL_USER=your_email_user
 EMAIL_PASS=your_email_password
 ```
